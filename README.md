@@ -1,8 +1,8 @@
-# JavaConcepts ☕
+# JavaConcepts
 
 A comprehensive repository housing Java implementations of fundamental data structures, algorithmic problem-solving, and Object-Oriented Programming (OOP) design patterns.
 
-## 📁 Repository Structure
+## Repository Structure
 
 The project is organized into several key modules:
 
@@ -12,7 +12,7 @@ The project is organized into several key modules:
 
 ---
 
-## 🛠️ Key Components
+## Key Components
 
 ### 1. Data Structures
 This module explores the implementation and usage of:
@@ -37,7 +37,7 @@ A deep dive into **Object-Oriented Programming** principles. This sub-project si
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 - **JDK 11** or higher.
