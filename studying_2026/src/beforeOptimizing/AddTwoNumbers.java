@@ -33,21 +33,18 @@ public class AddTwoNumbers {
 			ptr2=ptr2.next;
 		} // O(m)
 		
-		String result = Integer.toString((Integer.parseInt(number1) + Integer.parseInt(number2))); // O(1)
+		String result = Integer.toString((Integer.parseInt(number1) + Integer.parseInt(number2))); // O(n+m)
+		ListNode solutionPtr = null;
 		
-		System.out.print(result);		
-		//now take and input as List
-
-		ListNode ptr;
-		for(int i=result.length()-1; i>0; i--) {
-			ListNode temp = new ListNode(Integer.parseInt(String.valueOf(result.charAt(i))), null);
-			
-		}
-		//fix this
+		for(int i=0; i<=result.length()-1; i++) {
+			ListNode solution = new ListNode(Integer.parseInt(String.valueOf(result.charAt(i))), solutionPtr);
+			solutionPtr = solution;
+		} //O(k)/ number of digis, which is at MAX(O(n+m)+1)
+		 //SO O(max(n, m))
 		
-		
-		
-		return null;
+		//Final runtime analysis -- O(n+m)
+		//Space is also O(n+m)
+		return solutionPtr;
 	}
 	
 	/*
@@ -59,14 +56,20 @@ public class AddTwoNumbers {
 	public static void main(String[] args) {
 		ListNode number1 = new ListNode(3, null);
 		ListNode number2 = new ListNode(4, number1);
-		ListNode list1 = new ListNode(2, number2);
-		//traverseList(list1);
-		//System.out.println();
+		ListNode number6 = new ListNode(8, number2);
+		ListNode list1 = new ListNode(2, number6);
+		traverseList(list1);
+		System.out.println();
 		ListNode number4 = new ListNode(4, null);
 		ListNode number5 = new ListNode(6, number4);
 		ListNode list2 = new ListNode(5, number5);
-		//traverseList(list2);
+		traverseList(list2);
+		System.out.println();
 		traverseList(addTwoNumbers(list1, list2));
+		
+		//not robust because converting the linked lists into integers can overflow
+		//so won't work for big numbers
+		//better approach - add digit-by-digit with a carry (which I started but then got frustrated lol)
 	}
 	
 	public static void traverseList(ListNode head) {
