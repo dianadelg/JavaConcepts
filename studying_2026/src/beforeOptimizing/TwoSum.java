@@ -33,17 +33,18 @@ public class TwoSum {
      */
 
     public static int[] twoSum(int[] nums, int target) {
-        int[] result = new int[2];
+        int[] result = new int[2];//O(1) space
 
-        for (int i = 0; i < nums.length - 1; i++) {
-            for (int j = nums.length - 1; j > i; j--) {
-                if (nums[i] + nums[j] == target) {
+        for (int i = 0; i < nums.length - 1; i++) { //(O(n))
+            for (int j = nums.length - 1; j > i; j--) { //O(n)
+                if (nums[i] + nums[j] == target) { //O(1)
                     result[0] = i;
                     result[1] = j;
                     return result;
                 }
             }
-        }
+        } //runtime is O(n^2)
+        //space is just O(1)
 
         throw new IllegalArgumentException("No solution found");
     }
