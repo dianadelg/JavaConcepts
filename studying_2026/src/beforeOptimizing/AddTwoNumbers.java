@@ -1,5 +1,7 @@
 package beforeOptimizing;
 
+import shared.ListNode;
+
 public class AddTwoNumbers {
 	
 	/*
