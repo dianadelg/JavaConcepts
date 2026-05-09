@@ -40,15 +40,17 @@ public class ValidParenthesis {
 					if(item!='[') {
 						return false;
 					}
-				}else {
-					return false; //will we ever get to this case
 				}
 			}else {
 				//means it's {[(
 				stack.push(s.charAt(i));
 			}
 		}
-		return true;
+		if(stack.isEmpty()) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 	
 	public static void main (String[] args) {
@@ -56,10 +58,12 @@ public class ValidParenthesis {
 		String test2= "[([])]"; //true
 		String test3= "[]]["; //false
 		String test4 = "]"; //false
+		String test5 = "[["; //false
 		
 		System.out.println(isValid(test1));
 		System.out.println(isValid(test2));		
 		System.out.println(isValid(test3));		
 		System.out.println(isValid(test4));	
+		System.out.println(isValid(test5));	//Issue: [[[ passes
 	}
 }
