@@ -44,13 +44,13 @@ public class LongestSubstring {
 				//so when we've already seen this letter
 				//this while loop is O(n) because AT MOST we add all of the chars from s to the set. So this would be 
 				//n chars at max, making it at max O(n)
-				chars.remove(s.charAt(l)); //remove char from set
+				chars.remove(s.charAt(l)); //remove char from set. Remember, we want set to match window
 				l += 1; //move L over an index. Slide the window :)
 			}
 			//once out of here, this is where we have a valid window
 			int w = (r-l)+1; //the formula to calculate length of the current window
 			longest = Math.max(w, longest); //set longest to current window length if > current longest 
-			chars.add(s.charAt(r)); //add in char at R if we know it's valid
+			chars.add(s.charAt(r)); //add in char at R if we know it's valid before moving R
 		}
 		
 		return longest;
@@ -68,5 +68,225 @@ public class LongestSubstring {
 		System.out.println(lengthOfLongestSubstring("abcde")); //this only works as a weird side effect, because we should reset every j
 	}
 
+	
+	/*
+	 * LONGEST SUBSTRING WITHOUT REPEATING CHARACTERS
+	 * SLIDING WINDOW PATTERNS / THINGS TO REMEMBER
+	 *
+	 * -------------------------------------------------
+	 * 1. SUBSTRING VS SUBSEQUENCE
+	 * -------------------------------------------------
+	 * SUBSTRING:
+	 * - characters must be continuous
+	 * - cannot skip around
+	 *
+	 * Example:
+	 *
+	 *     "pwwkew"
+	 *
+	 *     "wke"  -> valid substring
+	 *     "pwke" -> NOT a substring (skips chars)
+	 *
+	 * This problem specifically asks for:
+	 *
+	 *     LONGEST CONTINUOUS WINDOW
+	 *
+	 * -------------------------------------------------
+	 *
+	 * 2. SLIDING WINDOW PATTERN
+	 * -------------------------------------------------
+	 * The window is:
+	 *
+	 *     s[l...r]
+	 *
+	 * where:
+	 *
+	 *     l = left side of window
+	 *     r = right side of window
+	 *
+	 * The goal:
+	 *
+	 *     maintain a VALID window at all times
+	 *
+	 * Valid means:
+	 *
+	 *     NO duplicate characters
+	 *
+	 * -------------------------------------------------
+	 *
+	 * 3. MAIN SLIDING WINDOW RULE
+	 * -------------------------------------------------
+	 *
+	 * IF WINDOW IS VALID:
+	 *     move R
+	 *
+	 * IF WINDOW IS INVALID:
+	 *     move L
+	 *
+	 * The window grows to search for larger answers,
+	 * and shrinks only when duplicates appear.
+	 *
+	 * -------------------------------------------------
+	 *
+	 * 4. WHAT THE HASHSET REPRESENTS
+	 * -------------------------------------------------
+	 * VERY important insight.
+	 *
+	 * The HashSet is NOT:
+	 *
+	 *     "all characters ever seen"
+	 *
+	 * It IS:
+	 *
+	 *     "all characters CURRENTLY INSIDE the window"
+	 *
+	 * Therefore:
+	 *
+	 *     set MUST always exactly match the window
+	 *
+	 * -------------------------------------------------
+	 *
+	 * 5. WHY WE REMOVE s.charAt(l)
+	 * -------------------------------------------------
+	 * When duplicate found at R:
+	 *
+	 *     while(chars.contains(s.charAt(r)))
+	 *
+	 * we DO NOT remove:
+	 *
+	 *     s.charAt(r)
+	 *
+	 * because R is the NEW incoming character.
+	 *
+	 * Instead:
+	 *
+	 *     remove s.charAt(l)
+	 *     move l++
+	 *
+	 * because:
+	 *
+	 *     L is the character LEAVING the window.
+	 *
+	 * IMPORTANT RULE:
+	 *
+	 *     If L moves:
+	 *         remove s[L]
+	 *
+	 *     If R moves:
+	 *         add s[R]
+	 *
+	 * because set must always mirror the window exactly.
+	 *
+	 * -------------------------------------------------
+	 *
+	 * 6. DUPLICATES ARE ABOUT WINDOW CONTENTS,
+	 *    NOT JUST CHARACTER VALUES
+	 * -------------------------------------------------
+	 * I got confused because:
+	 *
+	 *     s[l] == s[r]
+	 *
+	 * value-wise.
+	 *
+	 * But the important thing is:
+	 *
+	 *     one character is LEAVING the window
+	 *     one character is ENTERING the window
+	 *
+	 * The algorithm cares about:
+	 *
+	 *     current window state
+	 *
+	 * not just matching values.
+	 *
+	 * -------------------------------------------------
+	 *
+	 * 7. WINDOW LENGTH FORMULA
+	 * -------------------------------------------------
+	 * Current valid window length:
+	 *
+	 *     (r - l) + 1
+	 *
+	 * Example:
+	 *
+	 *     l = 2
+	 *     r = 4
+	 *
+	 * length:
+	 *
+	 *     (4 - 2) + 1 = 3
+	 *
+	 * -------------------------------------------------
+	 *
+	 * 8. BIG-O PATTERN
+	 * -------------------------------------------------
+	 * Even though there is:
+	 *
+	 *     a for loop
+	 *     AND a while loop
+	 *
+	 * the solution is STILL:
+	 *
+	 *     O(n)
+	 *
+	 * because:
+	 *
+	 *     each character is added at most once
+	 *     each character is removed at most once
+	 *
+	 * So total work across entire algorithm:
+	 *
+	 *     O(2n) -> O(n)
+	 *
+	 * Space:
+	 *
+	 *     O(n)
+	 *
+	 * worst case:
+	 *
+	 *     entire string has unique chars
+	 *
+	 * Example:
+	 *
+	 *     "abcdefg"
+	 *
+	 * -------------------------------------------------
+	 *
+	 * 9. COMMON SLIDING WINDOW SIGNALS
+	 * -------------------------------------------------
+	 * If problem asks for:
+	 *
+	 * - longest substring
+	 * - shortest substring
+	 * - continuous section
+	 * - window of valid elements
+	 * - no duplicates
+	 * - at most k distinct chars
+	 *
+	 * THINK:
+	 *
+	 *     SLIDING WINDOW
+	 *
+	 * -------------------------------------------------
+	 *
+	 * 10. IMPORTANT INTERVIEW TAKEAWAY
+	 * -------------------------------------------------
+	 * Brute force:
+	 *
+	 *     restart from every index
+	 *     nested loops
+	 *
+	 * usually means:
+	 *
+	 *     O(n^2)
+	 *
+	 * Sliding window improves this by:
+	 *
+	 *     reusing previous work
+	 *     adjusting one moving window
+	 *
+	 * instead of rebuilding substrings repeatedly.
+	 *
+	 */
 
 }
