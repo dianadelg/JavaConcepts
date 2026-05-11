@@ -1,0 +1,73 @@
+- For Loop
+  - Using this makes something O(n) guaranteed
+  		- If you used a while loop: Its time complexity depends entirely on how many times the loop condition remains true and how the variables within that condition are updated.
+
+- Stack
+	If problem asks:
+	     * - nested structures
+	     * - matching pairs
+	     * - reversing order
+	     * - "most recent" tracking
+	     * - undo behavior
+	     * - balanced expressions
+	     * - matching things
+	     * - repeatedly checking "latest opened"
+	     * - needing reverse order behavior
+	     *
+	     * THINK:Stack
+	     	-  LIFO (last in first out)
+	     	
+- HashMaps:
+	If I need constant lookup O(1) -- HashMap or Set (Map stores key/value pair, set stores if it exists or not)
+	If I see:
+	 *
+	 *     "Find two values that combine to target"
+	 *
+	 * THINK:
+	 *
+	 *     "Can I store what I've already seen?"
+	 *
+	 * If I see:
+	 *
+	 *     nested loop checking pairs
+	 *
+	 * THINK:
+	 *
+	 *     "Can a HashMap reduce this to one pass?"
+	If I see:
+		 * - nested loops
+		 * - repeated searching
+		 *
+		 * THINK:
+		 *
+		 *     "Can a HashMap turn this into O(n)?"
+	 
+- Linked Lists -- use dummy nodes to reduce front node logic and then return head.next
+		 * Pattern shows up CONSTANTLY in:
+		 * - merging lists
+		 * - building output lists
+		 * - removing nodes
+		 * - partitioning lists
+		 * - reversing portions of lists
+		 		 * If I see:
+		 * - linked list output construction
+		 * - repeated insertion
+		 * - awkward first-node logic
+		 *
+		 * THINK:
+		 *
+		 *     "Should I use a dummy node?"
+
+Sliding Window
+	If problem asks for:
+		 *
+		 * - longest substring
+		 * - shortest substring
+		 * - continuous section
+		 * - window of valid elements
+		 * - no duplicates
+		 * - at most k distinct chars
+		 *
+		 * THINK:
+		 *
+		 *     SLIDING WINDOW
