@@ -39,6 +39,7 @@ public class LongestCommonPrefix {
     			for(int i=0; i<strs.length; i++) {
     				if(!strs[i].contains(current)) { //want to check the longest+current
     					containsChar = false;
+    					longest=""; //reset
     				}
     			}//if out of for loop, means all strings contain current. Append to longest
     			longest+=current;
