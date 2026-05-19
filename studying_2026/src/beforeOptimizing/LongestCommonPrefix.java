@@ -58,6 +58,7 @@ public class LongestCommonPrefix {
 		//String[] str = {"flight","flower","flow"};
 		String[] str = {"sflight","aflower","rflow"};
 		System.out.println(longestCommonPrefix(str));
+		//I misunderstood the problem...prefix ALWAYS starts at index 0. The second it breaks, we fail
 	}
 	
 	

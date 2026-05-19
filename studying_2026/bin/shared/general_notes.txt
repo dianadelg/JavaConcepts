@@ -71,6 +71,19 @@ Sliding Window
 		 * THINK:
 		 *
 		 *     SLIDING WINDOW
+		 
+		 
+Prefix vs Substring vs SubSequence -- ex: flower: 
+	Prefix: the START of a string, must begin at index 0 -- "fl" "flo" "flow"
+		NOT: "low" because we have to start at the beginning of the word
+	Substring:continous chunk ANYWHERE in string -- "flow" "ow" "wer"
+		NOT: "fwr" because we skipped letters inbetween
+	Subsequence: characters in order, but you MAY skip -- "fwr" "flow" "fr"
+		NOT: "rfe" because order changed
+		
+		 
+		 
+		 
 
 
 

@@ -2,3 +2,4 @@
 2. AddTwoNumbers -- LinkedLists
 3. ValidParenthesis -- stack
 4. LongestSubstring -- sliding window, hashset
+5. LongestCommonPrefix -- prefix meaning, compare vertically
