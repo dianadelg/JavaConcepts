@@ -58,7 +58,7 @@
 		 *
 		 *     "Should I use a dummy node?"
 
-Sliding Window
+- Sliding Window
 	If problem asks for:
 		 *
 		 * - longest substring
@@ -73,7 +73,7 @@ Sliding Window
 		 *     SLIDING WINDOW
 		 
 		 
-Prefix vs Substring vs SubSequence -- ex: flower: 
+- Prefix vs Substring vs SubSequence -- ex: flower: 
 	Prefix: the START of a string, must begin at index 0 -- "fl" "flo" "flow"
 		NOT: "low" because we have to start at the beginning of the word
 	Substring:continous chunk ANYWHERE in string -- "flow" "ow" "wer"
@@ -81,6 +81,8 @@ Prefix vs Substring vs SubSequence -- ex: flower:
 	Subsequence: characters in order, but you MAY skip -- "fwr" "flow" "fr"
 		NOT: "rfe" because order changed
 		
+- Big O
+	We do NOT usually count the input or the returned answer
 		 
 		 
 		 

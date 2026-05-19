@@ -6,10 +6,11 @@ public class LongestCommonPrefix {
 	    String word = strs[0];
 
 	    for (int i = 0; i < word.length(); i++) {//current char position
-	        char currentChar = word.charAt(i);
+	        //O(m) where m is the length of the word
+	    	char currentChar = word.charAt(i);
 
 	        for (int j = 1; j < strs.length; j++) {//which word we are checking
-
+	        //O(n) where n is the number of words
 	            if (i >= strs[j].length() || strs[j].charAt(i) != currentChar) {
 	                //i >= strs[j].length() checking size of word -- is this word to short to even have index j
 	            	//if so, prefix must stop
@@ -19,7 +20,9 @@ public class LongestCommonPrefix {
 	        }
 	    }
 
-	    return word;
+	    return word; //Runtime: O(m*n) operations
+	    //Space: O(1) -- just using some vars and counters whose size does NOT grow with input size
+	    //Output can be O(m) because this is the longest word size returned, but we do not count input or returned answer size when doing runtime analysis
 	}
 	
 	public static void main (String[] args) {
