@@ -31,6 +31,7 @@ public class LongestCommonPrefix {
     public static String longestCommonPrefix(String[] strs) {
     	String word = strs[0]; //logic: take any word and check for letters in every item
     	String longest = "";
+    	String curr="";
     	boolean containsChar = true;
     	for(int j=0; j<word.length();j++) {
     		String current = word.charAt(j)+"";
@@ -39,18 +40,24 @@ public class LongestCommonPrefix {
     			for(int i=0; i<strs.length; i++) {
     				if(!strs[i].contains(current)) { //want to check the longest+current
     					containsChar = false;
-    					longest=""; //reset
+    					if(curr.length()>longest.length()) {
+    						longest=curr;
+    					}
+    					curr=""; //reset
     				}
     			}//if out of for loop, means all strings contain current. Append to longest
-    			longest+=current;
+    			curr+=current;
+    			break;
     		}while(containsChar);
     	}
+    	return longest;
     	
     }
 	
 	public static void main (String[] args) {
-		String[] str = {"flower","flow","flight"};
-		System.out.println(str);
+		//String[] str = {"flight","flower","flow"};
+		String[] str = {"sflight","aflower","rflow"};
+		System.out.println(longestCommonPrefix(str));
 	}
 	
 	
