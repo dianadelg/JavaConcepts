@@ -72,7 +72,11 @@
 		 *
 		 *     SLIDING WINDOW
 		 
-		 
+- Math
+	Get last digit -- x % 10 
+	Remove last digit -- x / 10
+	Append digit to another number -- newNum = newNum * 10 + digit
+ 
 - Prefix vs Substring vs SubSequence -- ex: flower: 
 	Prefix: the START of a string, must begin at index 0 -- "fl" "flo" "flow"
 		NOT: "low" because we have to start at the beginning of the word
@@ -83,8 +87,10 @@
 		
 - Big O
 	We do NOT usually count the input or the returned answer
+	Number of digits/length in problems is like O(n) -- n does not always bean number of inputs
+	This is important, it's how you understand Big O
 		 
-		 
+
 		 
 
 

@@ -1,7 +1,5 @@
 package beforeOptimizing;
 
-import java.util.ArrayList;
-
 public class LongestCommonPrefix {
 	
 	
