@@ -1,6 +1,7 @@
-1. TwoSum -- HashMap/complement formula
-2. AddTwoNumbers -- LinkedLists
-3. ValidParenthesis -- stack
-4. LongestSubstring -- sliding window, hashset
-5. LongestCommonPrefix -- prefix meaning, compare vertically
-6. PalindromeNumber -- modulo, digit extraction
+1. TwoSum -- HashMap/complement formula EASY
+2. AddTwoNumbers -- LinkedLists MEDIUM
+3. ValidParenthesis -- stack EASY
+4. LongestSubstring -- sliding window, hashset MEDIUM
+5. LongestCommonPrefix -- prefix meaning, compare vertically EASY
+6. PalindromeNumber -- modulo, digit extraction EASY
+7. ReverseInteger -- overflow, exception handling MEDIUM

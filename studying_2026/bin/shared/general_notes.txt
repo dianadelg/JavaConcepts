@@ -89,6 +89,74 @@
 	We do NOT usually count the input or the returned answer
 	Number of digits/length in problems is like O(n) -- n does not always bean number of inputs
 	This is important, it's how you understand Big O
+
+ * BIG-O SPACE COMPLEXITY:
+ * VALUES VS MEMORY
+ * IMPORTANT:
+ *
+ * Space complexity measures:
+ *
+ *     how much EXTRA MEMORY is allocated
+ *
+ * NOT:
+ *
+ *     how large a VALUE becomes
+ *
+ *
+ * Example:
+ *
+ *     int x = 1;
+ *     x = 1000000000;
+ *
+ * x got MUCH larger in value,
+ * BUT we still only have:
+ *
+ *     ONE integer variable
+ *
+ * Therefore:
+ *
+ *     O(1) space
+ *
+ *
+ * Space grows when we allocate MORE things:
+ *
+ *     new int[n]
+ *     HashMap
+ *     ArrayList
+ *     recursion stack
+ *     StringBuilder growing with input
+ *
+ * because memory usage scales with input size.
+ *
+ *
+ * Primitive variables are treated as:
+ *
+ *     constant-size memory
+ *
+ * Example:
+ *
+ *     int
+ *     boolean
+ *     char
+ *
+ * are all:
+ *
+ *     O(1) space
+ *
+ * regardless of the numeric value stored inside them.
+ *
+ *
+ * IMPORTANT INTERVIEW TAKEAWAY:
+ *
+ * Ask:
+ *
+ *     "Am I allocating MORE memory as input grows?"
+ *
+ * NOT:
+ *
+ *     "Are the numbers themselves getting bigger?"
+ *
+ */
 		 
 
 		 
