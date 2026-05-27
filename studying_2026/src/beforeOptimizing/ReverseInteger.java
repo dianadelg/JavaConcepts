@@ -38,18 +38,26 @@ public class ReverseInteger {
     		//Remove last digit -- x / 10
     		//Append digit to another number -- newNum = newNum * 10 + digit
     		try{
-    			reverse = reverse * 10 + (x%10);
-    		}catch(ArithmeticException e) {
+    			reverse = reverse * 10 + (x%10); //try/catch doesn’t work because Java int overflow does not throw an ArithmeticException
+    		}catch(ArithmeticException e) { //can overflow, but Java will just produce a wrong int value instead of throwing.
     			return 0;
     		};
     		x=x/10;
     	}
     	if(original < 0) {
-    		return -1*reverse;
+    		return -1*reverse; 
+//    		Integer.MIN_VALUE = -2147483648
+//    				cannot become positive as an int.
+//    				Its positive version would be:
+//    				2147483648
+//    				which is too big for int.
     	}else {
     		return reverse;
     	}
     }
+    
+    //TIPS:
+//    Check overflow before multiplying: Would reverse * 10 + digit go out of int bounds?
 	
 	
 	public static void main(String[] args) {
