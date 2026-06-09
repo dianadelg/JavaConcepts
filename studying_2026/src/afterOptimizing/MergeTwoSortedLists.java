@@ -4,66 +4,50 @@ import shared.ListNode;
 public class MergeTwoSortedLists {
 	public static ListNode mergeTwoLists(ListNode list1, ListNode list2) {
 		
-		//given a list 2 3 6 7 9
-		//and   a list 1 4 5
-		//return 1 2 3 4 5 6 7
-		//ALSO. If at least one is empty, return the other list (because if both empty, return one empty)
+		ListNode temp = new ListNode(0,null); //create fake starter node, gives us an easy place to build a merged list
+		//makes sense because where else would we know to start?
+		ListNode current = temp;  //the pointer we move as we build the result
 		
-		ListNode ptr1 = list1;
-		ListNode ptr2 = list2;
-		ListNode solution = new ListNode(0,null);
-		ListNode solutionPtr = solution; 
-		
-		if(ptr1 == null || ptr2 == null) { //preliminary check for empty list
-			if(ptr1 == null) {
-				return ptr2;
+		while (list1 !=null && list2 != null) { //keep looping while both lists still have nodes
+			//because we can only compare list1 and list2 while both still have nodes
+			if(list1.val <= list2.val) {
+				current.next = list1; //attach list1 node to the result. DO NOT create new node, reuse existing
+				list1=list1.next; //move list1 forward since we just used the node
 			}else {
-				return ptr1;
+				//means list2 value is smaller
+				current.next = list2;
+				list2=list2.next;
 			}
-		}
-		while(ptr1!=null || ptr2!=null) {
-			//can we merge in one list?
-			//else means still data
-			if(ptr1==null) {
-				solutionPtr.next = new ListNode(ptr2.val, null);
-				solutionPtr=solutionPtr.next;
-				ptr2=ptr2.next;
-			}
-			else if(ptr2==null) {
-				solutionPtr.next = new ListNode(ptr1.val, null);
-				solutionPtr=solutionPtr.next;
-				ptr1=ptr1.next;
-			}
-			else if(ptr1.val>ptr2.val) {
-				solutionPtr.next = new ListNode(ptr2.val, null);
-				solutionPtr=solutionPtr.next;
-				ptr2=ptr2.next;
-				solutionPtr.next = new ListNode(ptr1.val, null); //THIS IS DANGEROUS ADDING TWO NODES AT ONCE
-				//because what if we add
-				/*
-					list1 = [1, 10]
-					list2 = [2, 3, 4]
-					
-					Code might do -- because 3<10 but we didn't check for 10 against 4
-					
-					1, 2, 3, 10, 4
-					
-					because it adds 10 before checking 4. 
-				 */
-				solutionPtr=solutionPtr.next;
-				ptr1=ptr1.next;
-			}else {
-				solutionPtr.next = new ListNode(ptr1.val, null);
-				solutionPtr=solutionPtr.next;
-				ptr1=ptr1.next;
-				solutionPtr.next = new ListNode(ptr2.val, null);
-				solutionPtr=solutionPtr.next;
-				ptr2=ptr2.next;
-			}
+			current = current.next;
+			//move the result pointer forward
+			//after attaching a node, current should point to the end of the merged list
+			//so the next node can be attached after it
 		}
 		
-		return solution.next;
+		//after the loop, at least one of the lists is empty (how we break the loop condition)
+		//since the leftover is already sorted, we can just attach the remainder of the rest of the remaining list:
+		if (list1 != null) {
+		    current.next = list1;
+		} else {
+		    current.next = list2;
+		}
+		//no need to keep comparing this way
+		return temp.next; //return the head of the merged list, since we iterated through list1, list2, and current,
+		//this is the only starting ptr we have
 		
+		
+		//Time: O(m + n)
+		//Space: O(1)
+				
+		//		Because:
+		//
+		//		every node from both lists is visited/attached at most once
+		//		reuse existing nodes instead of creating new ones
+		//		temp and current are just pointer variables
+		//
+		//		One tiny nuance: the dummy node is one extra node, but that is still constant space, so it stays O(1)
+				
+				
 	}
 	
 	public static void main (String[] args) {
@@ -103,13 +87,14 @@ public class MergeTwoSortedLists {
 	}
 	
 	public static void traverseList(ListNode head) {
-		ListNode ptr= head;
-		do{
-			System.out.print(ptr.val);
-			ptr=ptr.next;
-		}while(ptr != null);
+	    ListNode ptr = head;
+
+	    while (ptr != null) {
+	        System.out.print(ptr.val);
+	        ptr = ptr.next;
+	    }
 	}
-	
+
 	/*
 	 * MERGE TWO SORTED LISTS PATTERNS / THINGS TO REMEMBER
 	 *
@@ -167,7 +152,41 @@ public class MergeTwoSortedLists {
 	 *
 	 * -------------------------------------------------
 	 *
-	 * 3. DUMMY NODE PATTERN
+	 * 3. WHY && IN THE LOOP CONDITION
+	 * -------------------------------------------------
+	 * Optimized solution uses:
+	 *
+	 *     while(list1 != null && list2 != null)
+	 *
+	 * because comparison only makes sense while BOTH
+	 * lists still have nodes.
+	 *
+	 * Inside the loop we do:
+	 *
+	 *     list1.val <= list2.val
+	 *
+	 * which requires BOTH nodes to exist.
+	 *
+	 * Using:
+	 *
+	 *     ||
+	 *
+	 * is not necessarily wrong,
+	 * but it forces extra branching:
+	 *
+	 *     if(list1 == null)
+	 *     else if(list2 == null)
+	 *
+	 * The optimized approach says:
+	 *
+	 *     compare while BOTH exist
+	 *     then attach remainder afterward
+	 *
+	 * which simplifies the logic.
+	 *
+	 * -------------------------------------------------
+	 *
+	 * 4. DUMMY NODE PATTERN
 	 * -------------------------------------------------
 	 * Use a dummy node to avoid special-casing the first node.
 	 *
@@ -187,7 +206,105 @@ public class MergeTwoSortedLists {
 	 *
 	 * -------------------------------------------------
 	 *
-	 * 4. SPLICE EXISTING NODES
+	 * 5. WHY current CAN MOVE
+	 * -------------------------------------------------
+	 * current is ONLY:
+	 *
+	 *     the moving tail of the merged list
+	 *
+	 * It is NOT:
+	 *
+	 *     the head of the merged list
+	 *
+	 * Example:
+	 *
+	 *     dummy -> 1 -> 2 -> 3
+	 *                         ↑
+	 *                      current
+	 *
+	 * current moves as we build.
+	 *
+	 * BUT:
+	 *
+	 *     dummy never moves
+	 *
+	 * Therefore:
+	 *
+	 *     dummy.next
+	 *
+	 * always points to the REAL head of the answer.
+	 *
+	 * This is the SAME dummy-node pattern used in:
+	 *
+	 *     Add Two Numbers
+	 *
+	 * -------------------------------------------------
+	 *
+	 * 6. WHY MOVING list1/list2 IS OKAY
+	 * -------------------------------------------------
+	 * This:
+	 *
+	 *     list1 = list1.next;
+	 *
+	 * does NOT delete nodes.
+	 *
+	 * It ONLY changes:
+	 *
+	 *     where the local variable points
+	 *
+	 * The original nodes still exist in memory.
+	 *
+	 * Since the goal is:
+	 *
+	 *     return merged list
+	 *
+	 * we do NOT need to preserve the original head
+	 * references separately.
+	 *
+	 * -------------------------------------------------
+	 *
+	 * 7. POINTER / REFERENCE LESSON
+	 * -------------------------------------------------
+	 * Variables like:
+	 *
+	 *     current
+	 *     list1
+	 *     ptr1
+	 *
+	 * are REFERENCES to nodes.
+	 *
+	 * Example:
+	 *
+	 *     ListNode a = node;
+	 *     ListNode b = node;
+	 *
+	 * BOTH point to same object.
+	 *
+	 * If you mutate the node:
+	 *
+	 *     a.next = something
+	 *
+	 * then:
+	 *
+	 *     b sees the change too
+	 *
+	 * because same underlying object.
+	 *
+	 * BUT:
+	 *
+	 *     a = newNode;
+	 *
+	 * only changes where:
+	 *
+	 *     a points
+	 *
+	 * NOT where:
+	 *
+	 *     b points
+	 *
+	 * -------------------------------------------------
+	 *
+	 * 8. SPLICE EXISTING NODES
 	 * -------------------------------------------------
 	 * The prompt says:
 	 *
@@ -217,26 +334,9 @@ public class MergeTwoSortedLists {
 	 *
 	 * -------------------------------------------------
 	 *
-	 * 5. LOOP CONDITION
+	 * 9. ATTACH REMAINDER
 	 * -------------------------------------------------
-	 * Use:
-	 *
-	 *     while(list1 != null && list2 != null)
-	 *
-	 * because comparison only makes sense while BOTH
-	 * lists still have nodes.
-	 *
-	 * Once one list becomes null:
-	 *
-	 *     stop comparing
-	 *
-	 * and attach the remaining list directly.
-	 *
-	 * -------------------------------------------------
-	 *
-	 * 6. ATTACH REMAINDER
-	 * -------------------------------------------------
-	 * Once one list is exhausted,
+	 * Once one list becomes null,
 	 * the remaining nodes in the other list are already
 	 * sorted.
 	 *
@@ -248,47 +348,7 @@ public class MergeTwoSortedLists {
 	 *
 	 * -------------------------------------------------
 	 *
-	 * 7. IMPORTANT POINTER LESSON
-	 * -------------------------------------------------
-	 * Variables like:
-	 *
-	 *     current
-	 *     solutionPtr
-	 *
-	 * are POINTERS/REFERENCES to nodes.
-	 *
-	 * Example:
-	 *
-	 *     ListNode a = node;
-	 *     ListNode b = node;
-	 *
-	 * BOTH point to same node.
-	 *
-	 * If you mutate the node:
-	 *
-	 *     a.next = something
-	 *
-	 * then:
-	 *
-	 *     b sees the change too
-	 *
-	 * because same underlying object.
-	 *
-	 * BUT:
-	 *
-	 *     a = newNode;
-	 *
-	 * only changes where:
-	 *
-	 *     a points
-	 *
-	 * NOT where:
-	 *
-	 *     b points
-	 *
-	 * -------------------------------------------------
-	 *
-	 * 8. EMPTY LIST REPRESENTATION
+	 * 10. EMPTY LIST REPRESENTATION
 	 * -------------------------------------------------
 	 * Empty linked list:
 	 *
@@ -317,7 +377,7 @@ public class MergeTwoSortedLists {
 	 *
 	 * -------------------------------------------------
 	 *
-	 * 9. BIG-O
+	 * 11. BIG-O
 	 * -------------------------------------------------
 	 * Let:
 	 *
@@ -345,7 +405,7 @@ public class MergeTwoSortedLists {
 	 *
 	 * -------------------------------------------------
 	 *
-	 * 10. INTERVIEW PATTERN RECOGNITION
+	 * 12. INTERVIEW PATTERN RECOGNITION
 	 * -------------------------------------------------
 	 * If problem says:
 	 *
@@ -362,5 +422,4 @@ public class MergeTwoSortedLists {
 	 *     reuse existing nodes when possible
 	 *
 	 */
-	
 }

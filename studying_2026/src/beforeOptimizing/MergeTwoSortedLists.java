@@ -31,6 +31,14 @@ public class MergeTwoSortedLists {
 			}
 		}
 		while(ptr1!=null || ptr2!=null) {
+			// in optimized version, we compare while both exist. 
+			//Once one runs out, stop comparing and attach the rest.
+			//in this version, the loop keeps going even when one is already null
+			//so we'd need extra conditions like ptr1==null and ptr2==null
+			//whereas in the optimized version, the comparison will only ever work if both still have nodes
+			//so not wrong, just not optimized
+			
+			
 			//can we merge in one list?
 			//else means still data
 			if(ptr1==null) {
