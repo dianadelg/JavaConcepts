@@ -47,7 +47,7 @@ public class RemoveNthNodeEnd {
 		ListNode count = head; //Space O(1)
 		
 		
-		while(count != null) { // Runtime O(n) where n is the number of nodes
+		while(count != null) { // Runtime O(d) where d is the number of nodes
 			length++;
 			count=count.next;
 		}
@@ -55,8 +55,16 @@ public class RemoveNthNodeEnd {
 		//now use that and the difference to get the nth node
 		count = head; //reuse count
 		
+		//if head == n
+		if(length == n) {
+			//need to remove head
+			head=head.next;
+			return head;
+		}
+		
+		
 		int i=0;
-		while(i!=(length-n-1)) { //need to check on list size of 1, n= 1
+		while(i!=(length-n-1)) { //Runtime O(d-n-1) or O(d) 
 			count=count.next;
 			i++;
 		}
@@ -65,7 +73,14 @@ public class RemoveNthNodeEnd {
 		count.next = count.next.next;
 		
 		return head;
+		
+		//Runtime analysis: O(2d) -- O(d) -- O(n)
+		//Space analysis: Constant vars, no new nodes created/traversed. O(1)
 	}
+	
+	//ISSUE. Case breaks if list size 2 and we remove node 2
+	//Need to be better at considering test cases/edge cases before I try
+	//the optimized solution!!!!
 	
 	public static void main (String[] args) {
 //		ListNode number0 = new ListNode(9, null);
@@ -78,10 +93,17 @@ public class RemoveNthNodeEnd {
 //		traverseList(removeNthFromEnd(list1, 2));
 		
 		//case of length =1
-		ListNode number10 = new ListNode(9, null);
-		traverseList(number10);
+//		ListNode number10 = new ListNode(9, null);
+//		traverseList(number10);
+//		System.out.println("Removing nth node....");
+//		traverseList(removeNthFromEnd(number10, 1));
+		
+		//case of removing the nth node which is the head
+		ListNode number11 = new ListNode(9, null);
+		ListNode number12 = new ListNode(7, number11);
+		traverseList(number12);
 		System.out.println("Removing nth node....");
-		traverseList(removeNthFromEnd(number10, 1));
+		traverseList(removeNthFromEnd(number12, 2));
 	}
 	
 	public static void traverseList(ListNode head) {
