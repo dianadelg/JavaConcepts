@@ -163,7 +163,9 @@ Search
 - Sequential: unsorted data, not good for big data sets. 
               Use on small, unsorted arrays or linked lists 
               where random access is not available 
-
+- Binary: must be sorted data, divide and conquer,
+		  best for large, sorted data 
+		  iterative preferred in practice
 
 
 🚀 HIGH-YIELD DATA STRUCTURES CHEAT SHEET
