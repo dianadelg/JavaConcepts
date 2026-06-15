@@ -1,4 +1,4 @@
-package shared;
+package shared.dataStructures;
 
 //Used in: AddTwoNumbers
 

@@ -1,6 +1,6 @@
 
 package afterOptimizing;
-import shared.ListNode;
+import shared.dataStructures.ListNode;
 
 public class AddTwoNumbers {
 		

@@ -159,7 +159,10 @@
  */
 		 
 
-		 
+Search
+- Sequential: unsorted data, not good for big data sets. 
+              Use on small, unsorted arrays or linked lists 
+              where random access is not available 
 
 
 

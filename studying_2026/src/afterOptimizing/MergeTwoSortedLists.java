@@ -1,5 +1,5 @@
 package afterOptimizing;
-import shared.ListNode;
+import shared.dataStructures.ListNode;
 
 public class MergeTwoSortedLists {
 	public static ListNode mergeTwoLists(ListNode list1, ListNode list2) {
