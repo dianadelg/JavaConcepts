@@ -6,3 +6,4 @@
 6. PalindromeNumber -- modulo, digit extraction EASY
 7. ReverseInteger -- overflow, exception handling MEDIUM
 8. MergeTwoSortedLists -- pointers EASY
+9. RemoveNthNodeEndofList -- pointers MEDIUM
