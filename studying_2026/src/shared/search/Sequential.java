@@ -31,12 +31,17 @@ public class Sequential {
         System.out.println(search(words, "banana")); // → 1
     }
     
-//    Runtime Complexity Analysis
-//	  Best  O(1) - Target is the first element
-//	  Average  O(n/2) → O(n) - Target is somewhere in the middle
-//    Worst  O(n) - Target is last or not present
-//    Space Complexity: O(1) — only a loop counter is used; no extra data structures.
-//
+    /*
+     * Sequential Search Complexity
+     * ----------------------------
+     * Time:
+     *   Best:    O(1)   - target is the first element
+     *   Average: O(n)   - target is somewhere in the middle
+     *   Worst:   O(n)   - target is last or not found
+     *
+     * Space:     O(1)   - only a loop counter used
+     */
+    
 //    Key Characteristics
 //    Works on unsorted data — unlike binary search, no sorting required
 //    Simple to implement — no preconditions on the collection

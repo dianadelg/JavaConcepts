@@ -36,15 +36,19 @@ public class Binary {
         System.out.println(searchRecursive(sorted, 11, 0, sorted.length - 1)); // → 5
     }
     
-    //Complexity Analysis
     
-    //(Recursive and Iterative are the same here)
-    //Best  O(1) - Target is the midpoint
-    //Average  O(log n) - Halves the search space each step
-    //Worst  O(log n) - Target not found after all halvings
-
-    //Iterative  O(1) - Only a few pointers
-    //Recursive  O(log n) - Call stack grows with each halving
+    /*
+     * Binary Search Complexity
+     * ------------------------
+     * Time:
+     *   Best:    O(1)      - target is the midpoint
+     *   Average: O(log n)  - halves search space each step
+     *   Worst:   O(log n)  - target not found after all halvings
+     *
+     * Space:
+     *   Iterative: O(1)      - only a few pointers
+     *   Recursive: O(log n)  - call stack grows with each halving
+     */
     
     
     
