@@ -24,6 +24,14 @@ public class InsertionSort {
         System.out.println(Arrays.toString(arr)); // → [1, 2, 3, 6, 8, 9]
     }
     
+//Visual representation: https://www.youtube.com/watch?v=JU767SDMDvA
+    
+//      Insertion sort just:
+//
+//    	Picks up the next unsorted element
+//    	Slides it left until it finds its correct spot
+//    	Repeats until everything is sorted
+    
     /*
      * Insertion Sort Complexity
      * -------------------------

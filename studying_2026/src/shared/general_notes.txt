@@ -166,6 +166,42 @@ Search
 - Binary: must be sorted data, divide and conquer,
 		  best for large, sorted data 
 		  iterative preferred in practice
+		  
+		  
+		  
+		  
+Sorting
+
+
+When to Use Insertion Sort
+ * --------------------------
+ * Best times to use:
+ *   - Small datasets              - low overhead makes it fast in practice
+ *   - Nearly sorted data          - worst case O(n²) but approaches O(n) in
+ *                                   practice when few elements are out of place
+ *   - Stability is required       - equal elements keep their original order
+ *   - Memory is tight             - sorts in-place, only O(1) extra space
+ *
+ * Worst times to use:
+ *   - Large datasets              - O(n²) becomes very slow as n grows
+ *   - Reverse sorted data         - every element shifts the full way, worst case
+ *   - Need consistent performance - degrades badly depending on input order
+
+
+When to Use Merge Sort
+ * ----------------------
+ * Best times to use:
+ *   - Large datasets              - O(n log n) stays fast as n grows
+ *   - Stability is required       - equal elements keep their original order
+ *   - Sorting linked lists        - doesn't rely on random access like quicksort
+ *   - Predictability matters      - always O(n log n), no worst-case surprises
+ *
+ * Worst times to use:
+ *   - Memory is tight             - requires O(n) extra space
+ *   - Small or nearly sorted data - insertion sort is faster with less overhead
+ *   - In-place sorting needed     - always requires a temporary array
+ 
+
 
 
 🚀 HIGH-YIELD DATA STRUCTURES CHEAT SHEET
