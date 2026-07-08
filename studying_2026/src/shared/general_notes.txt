@@ -200,7 +200,19 @@ When to Use Merge Sort
  *   - Memory is tight             - requires O(n) extra space
  *   - Small or nearly sorted data - insertion sort is faster with less overhead
  *   - In-place sorting needed     - always requires a temporary array
- 
+
+
+When to Use Heap Sort
+ * ---------------------
+ * Best times to use:
+ *   - Memory is tight             - O(1) space unlike merge sort's O(n)
+ *   - Need guaranteed performance - always O(n log n), no worst case surprises
+ *   - Large datasets              - holds up well as n grows
+ *
+ * Worst times to use:
+ *   - Stability is required       - does not preserve order of equal elements
+ *   - Nearly sorted data          - no adaptive advantage, insertion sort wins
+ *   - Cache performance matters   - heap's jumping around in memory is cache-unfriendly
 
 
 
