@@ -43,7 +43,7 @@ public class HeapSort {
     }
 
     public static void main(String[] args) {
-        int[] arr = {9, 3, 6, 1, 8, 2};
+        int[] arr = {9, 3, 6, 1, 8, 5, 5, 2};
         sort(arr);
         System.out.println(Arrays.toString(arr)); // → [1, 2, 3, 6, 8, 9]
     }
@@ -59,19 +59,6 @@ public class HeapSort {
      * Space:     O(1)        - sorts in-place, no extra array needed
      */
     
-    /*
-     * When to Use Heap Sort
-     * ---------------------
-     * Best times to use:
-     *   - Memory is tight             - O(1) space unlike merge sort's O(n)
-     *   - Need guaranteed performance - always O(n log n), no worst case surprises
-     *   - Large datasets              - holds up well as n grows
-     *
-     * Worst times to use:
-     *   - Stability is required       - does not preserve order of equal elements
-     *   - Nearly sorted data          - no adaptive advantage, insertion sort wins
-     *   - Cache performance matters   - heap's jumping around in memory is cache-unfriendly
-     */
     
     /*
      * Heap Sort - Worst Case Input
