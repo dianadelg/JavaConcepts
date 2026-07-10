@@ -28,15 +28,15 @@ import java.util.*;
 	    	for(int i=0; i< s.length(); i++) {
 	    		//check letter exists in map
 	    		if(countS.containsKey(s.charAt(i))) {
-	    			int count = countS.get(s.charAt(i));
-	    			countS.put(s.charAt(i), count++);
+	    			int count = countS.get(s.charAt(i))+1;
+	    			countS.put(s.charAt(i), count);
 	    		}else {
 	    			countS.put(s.charAt(i), 1);
 	    		}
 	    		
 	    		if(countT.containsKey(t.charAt(i))) {
-	    			int count = countT.get(t.charAt(i));
-	    			countT.put(t.charAt(i), count++);
+	    			int count = countT.get(t.charAt(i))+1;
+	    			countT.put(t.charAt(i), count);
 	    		}else {
 	    			countT.put(t.charAt(i), 1);
 	    		}
