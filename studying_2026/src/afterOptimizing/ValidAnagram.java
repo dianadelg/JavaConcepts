@@ -13,44 +13,29 @@ import java.util.*;
 	//
 //		Output: true
 		
-	    public static boolean isAnagram(String s, String t) {
-	    	//we want to go through the strings and check to see if a letter appears and how often it appears
-	    	//thinking hashmap
-	    	HashMap<Character, Integer> countS = new HashMap<>();
-	    	HashMap<Character, Integer> countT = new HashMap<>();
-	    	
-	    	if(s.length() != t.length()) {
-	    		//not same length, so immediately exit
-	    		return false;
-	    	}
-	    	
-	    	//else we know it's the same length, so use either for loop 
-	    	for(int i=0; i< s.length(); i++) {
-	    		//check letter exists in map
-	    		if(countS.containsKey(s.charAt(i))) {
-	    			int count = countS.get(s.charAt(i))+1;
-	    			countS.put(s.charAt(i), count);
-	    		}else {
-	    			countS.put(s.charAt(i), 1);
-	    		}
-	    		
-	    		if(countT.containsKey(t.charAt(i))) {
-	    			int count = countT.get(t.charAt(i))+1;
-	    			countT.put(t.charAt(i), count);
-	    		}else {
-	    			countT.put(t.charAt(i), 1);
-	    		}
-	    	}
-	    	
-	    	//now compare the two hashmaps
-	    	for (int j=97; j<=123; j++) {
-	    		char curr = (char)j;
-	    		if(countS.get(curr)!=countT.get(curr)){
-	    			return false;
-	    		}
-	    	}
-	    	return true;
-	    }
+		public static boolean isAnagram(String s, String t) {
+		    if (s.length() != t.length()) {
+		        return false;
+		    }
+
+		    int[] counts = new int[26];
+
+		    for (int i = 0; i < s.length(); i++) {
+		        counts[s.charAt(i) - 'a']++;
+		        counts[t.charAt(i) - 'a']--;
+		    }
+
+		    for (int count : counts) {
+		        if (count != 0) {
+		            return false;
+		        }
+		    }
+
+		    return true;
+		}
+		
+//		Time: O(n)
+//		Space: O(1)
 	    
 		
 		public static void main (String[] args) {
