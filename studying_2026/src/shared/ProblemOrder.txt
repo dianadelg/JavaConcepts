@@ -9,3 +9,4 @@
 9. RemoveNthNodeEndofList -- pointers MEDIUM
 10. ContainsDuplicate -- arrays/hashset EASY
 11. ValidAnagram -- arrays/hashing EASY
+12. GroupAnagrams -- MEDIUM
