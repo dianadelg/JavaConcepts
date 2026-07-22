@@ -71,6 +71,8 @@ public class GroupAnagrams {
     	//so we'd really want to record that we've seen this before -- HASHMAP.
     	
     	//let's think about this again
+    	//we would need to add a word to the map and all anagrams associated with map
+    	//ISSUE: what word is the key? Because we can't just use target, since if we search for "ate" and target is "eat", how would we know?
     	
     }
 	

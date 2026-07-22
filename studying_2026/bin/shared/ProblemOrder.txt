@@ -1,12 +1,12 @@
-1. TwoSum -- HashMap/complement formula EASY
+1. TwoSum -- HashMap/complement formula, HashMap for fast lookup EASY
 2. AddTwoNumbers -- LinkedLists MEDIUM
 3. ValidParenthesis -- stack EASY
 4. LongestSubstring -- sliding window, hashset MEDIUM
 5. LongestCommonPrefix -- prefix meaning, compare vertically EASY
 6. PalindromeNumber -- modulo, digit extraction EASY
 7. ReverseInteger -- overflow, exception handling MEDIUM
-8. MergeTwoSortedLists -- pointers EASY
-9. RemoveNthNodeEndofList -- pointers MEDIUM
+8. MergeTwoSortedLists -- two pointers EASY
+9. RemoveNthNodeEndofList -- fast and slow pointers MEDIUM
 10. ContainsDuplicate -- arrays/hashset EASY
-11. ValidAnagram -- arrays/hashing EASY
-12. GroupAnagrams -- MEDIUM
+11. ValidAnagram -- arrays/hashing, frequency counting EASY
+12. GroupAnagrams -- MEDIUM, canonical representation (Signature) + HashMap Grouping
