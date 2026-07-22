@@ -19,7 +19,6 @@ public class GroupAnagrams {
 	
 	
     public static List<List<String>> groupAnagrams(String[] strs) {
-        
     	List<List<String>> masterList = new ArrayList<>();
     	
     	for(int i=0; i<strs.length; i++) {
