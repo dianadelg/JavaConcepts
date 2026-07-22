@@ -1,0 +1,262 @@
+SLIDING WINDOW
+
+- Sliding Window
+	If problem asks for:
+		 *
+		 * - longest substring
+		 * - shortest substring
+		 * - continuous section
+		 * - window of valid elements
+		 * - no duplicates
+		 * - at most k distinct chars
+		   - substring
+		   - subarray
+		   - consecutive
+		   - contiguous
+		   - continuous
+		   - longest section
+           - shortest section
+           - maximum sum of k elements
+		 *
+		 * THINK:
+		 *
+		 *     SLIDING WINDOW
+		 *
+		 *
+		 NOT FOR SLIDING WINDOW:
+			- subsequence
+			- all combinations
+			- non-adjacent elements
+			- linked list pointer movement
+			- Sliding window MUST stay together
+			
+			
+
+The window: tracking two indices
+The length: right-left+1; inclusive
+	THINK: 1 [2 3 4] 
+	window: index right is 4 -- index 3. Left is 2, index 1. 3-1+1= 3.
+	The +1 matters because both endpoints are included.
+	
+The basic movement: right expands, left shrinks
+	- The right pointer keeps adding new elements to the window.
+	- The left pointer removes elements when the window becomes invalid.
+	- Think:
+		- Expand until there is a problem.
+		- Shrink until the problem is fixed.
+		- Record the answer.
+
+Example: longest substring without repeating characters
+Suppose string is "abca"
+- Start: [a]bcd 
+		- L = 0 (a), R=0 (a) length = r-l+1 == 0-0+1 = 1
+		- ask, is it valid? Is it a connected substring without repeating chars? Yes.
+		- Move right [ab]ca. L=0, R=1. length=1-0+1 = 2
+		- Is it valid? Yes. 
+		- Move right [abc]a. L=0, R=2, length=2-0+1 = 3
+		- Is it valud? Yes.
+		- Move right. [abca]. L=0, R=3, length= 3-0+1 = 4.
+		- Is it valid? NO. Because now 'a' appears twice. So now we move left up until it becomes valid again
+		- Move left. a[bca]. L=1, R=3, length= 3-1+1 = 3.
+		- Is it valid? Yes
+		
+		
+Common template:
+	int left = 0;
+	
+	for (int right = 0; right < input.length; right++) {
+	
+	    // Add input[right] to the current window
+	
+	    while (windowIsInvalid()) { //IMPORTANT NOTE
+	        // Remove input[left] from the current window
+	        left++;
+	    }
+	
+	    // The window is valid here
+	    // Update the answer
+	} 
+	
+In plain English:
+
+For every new right-side element:
+1. Add it to the window.
+2. If the window is invalid, shrink from the left.
+3. Once valid, update the answer.
+
+//IMPORTANT NOTE: we use a while loop because we may need to move left more than once to make it valid again
+So the while loop keeps shrinking until valid
+
+
+There are two major kinds of Sliding Windows:
+- Fixed size window (Fixed length window size. Ex: Find the maximum sum of any 3 consecutive numbers.)
+- Variable size window (Size changes depending on condition. Ex: Longest substring no repeating chars)
+
+
+--------------------------Fixed size window----------------------------------
+int windowSum = 0;
+int left = 0;
+
+for (int right = 0; right < nums.length; right++) {
+    windowSum += nums[right];
+
+    if (right - left + 1 > 3) {
+        windowSum -= nums[left];
+        left++;
+    }
+
+    if (right - left + 1 == 3) {
+        maxSum = Math.max(maxSum, windowSum);
+    }
+}
+
+Mental model:
+Add new number on the right.
+If window becomes too large, remove one from the left.
+
+Use fixed sliding window when:
+- size k
+- exactly k elements
+- k consecutive values
+
+--------------------------Variable size window----------------------------------
+Size changes depending on condition
+The window grows while valid and shrinks when invalid.
+
+int left = 0;
+Set<Character> seen = new HashSet<>(); //uses a set
+
+for (int right = 0; right < s.length(); right++) {
+
+    while (seen.contains(s.charAt(right))) {
+        seen.remove(s.charAt(left));
+        left++;
+    }
+
+    seen.add(s.charAt(right));
+
+    maxLength = Math.max(maxLength, right - left + 1);
+}
+
+Use variable size window when:
+- longest substring satisfying...
+- shortest subarray satisfying...
+- at most k...
+- no duplicates...
+- sum at least target...
+_______________________________________________________________________________
+
+How to recognize which condition controls the window
+- Ask: “What makes my current substring or subarray invalid?”
+- For longest substring without repeating characters: Invalid = duplicate character exists
+- For at most two distinct characters: Invalid = more than two distinct characters
+- For maximum sum of exactly k elements: Invalid = window size is greater than k
+- For minimum subarray sum at least target: Valid = current sum is at least target (logic is slightly reversed. Then you shrink while valid because you are trying to make the window as short as possible.)
+
+
+Longest valid window: 
+Usually......... 
+Expand right.
+Shrink while invalid.
+Update answer after the window is valid.
+
+Template: 
+
+for (int right = 0; right < input.length; right++) {
+    add(input[right]);
+
+    while (invalid()) {
+        remove(input[left]);
+        left++;
+    }
+
+    max = Math.max(max, right - left + 1);
+}
+
+Examples: 
+- longest substring without duplicates
+- longest subarray with at most k distinct values
+_______________________________________________________________________________
+
+Shortest valid window
+Usually........
+Expand right until valid.
+While valid, record answer and shrink.
+
+Template:
+
+for (int right = 0; right < input.length; right++) {
+    add(input[right]);
+
+    while (valid()) {
+        min = Math.min(min, right - left + 1);
+
+        remove(input[left]);
+        left++;
+    }
+}
+
+
+Examples
+minimum-size subarray with sum at least target
+minimum window substring
+_______________________________________________________________________________
+
+TL;DR: Distinction:
+
+Longest:
+shrink while invalid
+
+Shortest:
+shrink while valid
+_______________________________________________________________________________
+
+
+
+Why sliding window is faster: a brute force solution may generate every
+possible window, which is O(n^2)
+
+Sliding window avoids restarting from every position, each pointer only moves forward
+Making it O(n) often, because neither pointer resets backwards
+
+
+A good checklist: 
+1. Is the answer contiguous?
+2. Can I represent a current section with left and right?
+3. Can I update the window when one element enters or leaves?
+4. Is there a rule that tells me when to shrink?
+5. Am I looking for longest, shortest, or fixed-size?
+
+If yes ----> sliding window is likely the answer
+
+Interview script:
+“This asks for a contiguous substring, so I’m considering a sliding window. I’ll use right to expand 
+the candidate window and left to shrink it whenever the constraint is violated. Since both pointers 
+move only forward, the total traversal should be linear.”
+
+
+
+
+Mental model again:
+
+- The window is my current candidate answer.
+- right adds something.
+- left removes something.
+- A condition tells me when left must move.
+
+Then determine:
+- What is inside the window?
+- What makes it invalid?
+- What information do I need to track?
+
+For duplicate chars: 
+- Track: HashSet
+- Invalid when: new character is already present
+
+For sums:
+- Track: currentSum
+- Invalid or valid based on: target
+
+For char frequencies:
+- Track: HashMap<Character, Integer>
+- Invalid when: frequency/distinct-count rule is broken

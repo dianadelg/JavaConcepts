@@ -67,10 +67,26 @@
 		 * - window of valid elements
 		 * - no duplicates
 		 * - at most k distinct chars
+		   - substring
+		   - subarray
+		   - consecutive
+		   - contiguous
+		   - continuous
+		   - longest section
+           - shortest section
+           - maximum sum of k elements
 		 *
 		 * THINK:
 		 *
 		 *     SLIDING WINDOW
+		 *
+		 *
+		 NOT FOR SLIDING WINDOW:
+			- subsequence
+			- all combinations
+			- non-adjacent elements
+			- linked list pointer movement
+			- Sliding window MUST stay together
 		 
 - Math
 	Get last digit -- x % 10 
