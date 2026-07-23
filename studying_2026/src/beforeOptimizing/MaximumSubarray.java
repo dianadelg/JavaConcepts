@@ -51,6 +51,8 @@ public class MaximumSubarray {
     	}
     	
     	return maxSum;
+    	//runtime O(n^2)
+    	//space O(n^2) for list of numbers -- we actually don't need to keep the sums, can just track the max as we get a new one each time, dropping this to O(1)
     }
     
     public static void main (String[] args) {
