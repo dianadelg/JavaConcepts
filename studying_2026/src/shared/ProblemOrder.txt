@@ -12,3 +12,4 @@
 12. GroupAnagrams -- MEDIUM, canonical representation (Signature) + HashMap Grouping
 13. SlidingWindowVariable -- MEDIUM, interview prep working on sliding window variable length window (longestsubstring revisited)
 14. Maximum Average Subarray I -- EASY, fixed sliding window, not using a set
+15. Maximum Subarray - MEDIUM, Kadane's algo

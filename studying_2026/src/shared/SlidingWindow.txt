@@ -260,3 +260,68 @@ For sums:
 For char frequencies:
 - Track: HashMap<Character, Integer>
 - Invalid when: frequency/distinct-count rule is broken
+
+
+
+// 1. Your Sliding Window Question
+// You asked: Does the window start empty or with one element?
+// The answer is: Either is okay. It depends on which makes the logic cleaner.
+
+// Style 1 (my favorite): Start with an empty window
+int l = 0;
+for (int r = 0; r < nums.length; r++) {
+    // Add nums[r] to the window
+
+    // If window is invalid...
+    // shrink
+
+    // Evaluate answer
+}
+
+/*
+Mentally:
+Before loop:
+[]
+
+r = 0
+↓
+Add nums[0]
+[nums0]
+
+The window starts empty and grows naturally.
+This is the pattern we've used for every sliding window problem so far.
+*/
+
+
+// Style 2: Start with one element
+// Sometimes you'll see:
+// int currentSum = nums[0];
+// for (int r = 1; r < nums.length; r++) { ... }
+// This is common when there isn't really a "window" (like Maximum Subarray), 
+// or when initializing with the first element avoids special cases.
+
+
+// My recommendation
+// Whenever you're solving an actual sliding window problem, assume:
+// The window starts empty.
+// Then every iteration follows the same rhythm:
+// 1. Add r
+// 2. Fix window if necessary
+// 3. Evaluate answer
+// That rhythm works for almost every sliding window problem you'll see.
+
+
+
+For each incoming right element:
+
+1. Incorporate right into the window,
+   OR check what would happen if it were incorporated.
+
+2. Move left until the required window condition holds.
+
+3. Ensure right is represented in the tracked window state.
+
+4. Evaluate the valid window.
+
+
+Both start conceptually with an empty window. The difference is simply whether right is inserted before or after restoring validity.
