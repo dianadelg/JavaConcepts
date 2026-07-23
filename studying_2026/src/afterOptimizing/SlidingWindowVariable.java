@@ -2,7 +2,7 @@ package afterOptimizing;
 
 import java.util.HashSet;
 
-public class SlidingWindow {
+public class SlidingWindowVariable {
 
     //Longest Substring Without Repeating Characters    
     public static int lengthOfLongestSubstring(String s) {

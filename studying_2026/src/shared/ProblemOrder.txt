@@ -10,4 +10,5 @@
 10. ContainsDuplicate -- arrays/hashset EASY
 11. ValidAnagram -- arrays/hashing, frequency counting EASY
 12. GroupAnagrams -- MEDIUM, canonical representation (Signature) + HashMap Grouping
-13. SlidingWindow -- MEDIUM, interview prep working on sliding window
+13. SlidingWindowVariable -- MEDIUM, interview prep working on sliding window variable length window (longestsubstring revisited)
+14. Maximum Average Subarray I -- EASY, fixed sliding window
