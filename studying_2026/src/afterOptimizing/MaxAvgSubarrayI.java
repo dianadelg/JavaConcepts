@@ -76,6 +76,216 @@ public class MaxAvgSubarrayI {
         System.out.println("Test 5 Result: " + findMaxAverage(nums5, k5) + " (Expected: 2.8)");
     }
     }
+
+/*
+ * //======================= KADANE'S ALGORITHM =======================
+	
+	WHEN TO THINK KADANE
+	--------------------
+	1. Is the problem asking about a CONTIGUOUS (continuous) subarray?
+	   - contiguous
+	   - continuous
+	   - consecutive
+	   - subarray
+	
+	2. Am I maximizing or minimizing the SUM?
+	
+	3. Is the window NOT a fixed size?
+	   (If exactly k elements -> Fixed Sliding Window)
+	
+	4. Ask yourself:
+	   "What would make me move the LEFT pointer?"
+	
+	   If you have a clear answer:
+	   - duplicate
+	   - window > k
+	   - sum > target
+	   - too many distinct chars
+	
+	   => Sliding Window
+	
+	   If you DON'T have an answer, but the problem is asking for the
+	   maximum/minimum SUM of a contiguous subarray...
+	
+	   => Think Kadane.
+	
+	
+	---------------------------------------------------------------
+	MENTAL MODEL
+	---------------------------------------------------------------
+	
+	Sliding Window:
+	    "Is my window still valid?"
+	
+	Kadane:
+	    "Does my previous running sum HELP this number,
+	     or does it HURT this number?"
+	
+	
+	---------------------------------------------------------------
+	MAIN IDEA
+	---------------------------------------------------------------
+	
+	At every element ask:
+	
+	    Continue my current subarray?
+	
+	                OR
+	
+	    Start a brand-new subarray here?
+	
+	Whichever produces the larger sum wins.
+	
+	
+	---------------------------------------------------------------
+	VARIABLES
+	---------------------------------------------------------------
+	
+	currentSum
+	= running total of my CURRENT subarray
+	= current momentum
+	
+	maxSum
+	= BEST answer found anywhere so far
+	
+	Remember:
+	
+	currentSum < maxSum
+	
+	DOES NOT mean currentSum is "invalid."
+	
+	It simply means:
+	
+	"This isn't the best answer YET."
+	
+	Future numbers may still make it the best.
+	
+	
+	---------------------------------------------------------------
+	WHY currentSum STARTS AT 0
+	---------------------------------------------------------------
+	
+	0 means:
+	
+	"I haven't accumulated anything yet."
+	
+	NOT
+	
+	"My answer is 0."
+	
+	Do NOT use Integer.MIN_VALUE.
+	
+	0 + nums[i] = nums[i]
+	
+	which naturally starts the first subarray.
+	
+	
+	---------------------------------------------------------------
+	WHY WE ADD nums[i] FIRST
+	---------------------------------------------------------------
+	
+	currentSum += nums[i];
+	
+	Every subarray ending at index i MUST include nums[i].
+	
+	Always add the current element first.
+	
+	
+	---------------------------------------------------------------
+	WHY WE RESET TO 0
+	---------------------------------------------------------------
+	
+	If currentSum becomes negative:
+	
+	It can NEVER help future numbers.
+	
+	Example:
+	
+	currentSum = -8
+	Next number = 10
+	
+	Keep it:
+	-8 + 10 = 2
+	
+	Start fresh:
+	10
+	
+	A negative running sum only hurts future sums.
+	
+	Think:
+	
+	Negative currentSum = backpack full of rocks.
+	
+	Drop it.
+	
+	
+	---------------------------------------------------------------
+	IMPORTANT ORDER
+	---------------------------------------------------------------
+	
+	currentSum += nums[i];
+	
+	maxSum = Math.max(maxSum, currentSum);
+	
+	if(currentSum < 0)
+	    currentSum = 0;
+	
+	Update max BEFORE resetting.
+	
+	Otherwise:
+	
+	[-3, -2, -5]
+	
+	would incorrectly return 0 instead of -2.
+	
+	
+	---------------------------------------------------------------
+	RUNTIME / SPACE
+	---------------------------------------------------------------
+	
+	Time: O(n)
+	
+	One pass through the array.
+	
+	Several O(1) operations each iteration:
+	
+	- addition
+	- comparison
+	- assignment
+	- if statement
+	
+	4 operations × n elements = 4n
+	
+	Big-O ignores constants.
+	
+	O(4n) = O(n)
+	
+	Space: O(1)
+	
+	
+	---------------------------------------------------------------
+	INTERVIEW CHECKLIST
+	---------------------------------------------------------------
+	
+	✓ Contiguous / Continuous
+	✓ Maximum (or Minimum) SUM
+	✓ Variable-length subarray
+	✓ Positive and negative numbers
+	✓ No obvious Sliding Window rule
+	✓ Can't explain when LEFT should move
+	
+	=> Kadane
+	
+	
+	---------------------------------------------------------------
+	ONE SENTENCE TO REMEMBER
+	---------------------------------------------------------------
+	
+	At every element:
+	
+	"Should I continue my current subarray,
+	or start a brand-new one here?"
+ */
     
     
     /*
@@ -395,4 +605,6 @@ public class MaxAvgSubarrayI {
      * sliding window problem.
      *
      */
+
+
     

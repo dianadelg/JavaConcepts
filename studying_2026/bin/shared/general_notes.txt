@@ -106,6 +106,151 @@ Why?
 			- non-adjacent elements
 			- linked list pointer movement
 			- Sliding window MUST stay together
+
+
+- Kadane's Algorithm
+    /*
+     * If problem asks for:
+     *
+     * - maximum sum
+     * - minimum sum
+     * - largest sum
+     * - highest total
+     * - best contiguous sum
+     * - maximum (or minimum) subarray
+     * - contiguous
+     * - continuous
+     * - consecutive
+     * - subarray
+     * - positive and negative numbers
+     * - variable-length subarray
+     *
+     * AND...
+     *
+     * You CANNOT answer:
+     *
+     *     "What would make me move the LEFT pointer?"
+     *
+     * THINK:
+     *
+     *     KADANE'S ALGORITHM
+     *
+     *
+     * NOT FOR KADANE:
+     * - exactly k elements (Fixed Sliding Window)
+     * - duplicate characters
+     * - at most / at least k distinct characters
+     * - window grows and shrinks based on a rule
+     * - sum >= target or sum <= target
+     * - any problem with a clear LEFT pointer condition
+     *
+     * Kadane asks:
+     *
+     *     "Should I continue my current subarray,
+     *      or start a new one here?"
+     *
+     * Sliding Window asks:
+     *
+     *     "Is my window still valid?"
+     */
+
+
+
+Kadane's vs Sliding Window	
+- Before writing ANY code, ask:
+	
+- "What would make me move the LEFT pointer?"
+	
+- If you know → Sliding Window.
+	
+- If you DON'T know, but it's asking for the maximum/minimum SUM
+	of a contiguous subarray → Kadane.
+	
+	
+___________________________________________________________________	
+	Problem uses a CONTIGUOUS subarray
+	
+	            │
+	            ▼
+	
+	Can I define a rule for moving the LEFT pointer?
+	
+	Examples:
+	- duplicate
+	- window > k
+	- sum >= target (positive numbers)
+	- too many distinct chars
+	
+	        YES
+	         │
+	         ▼
+	   Sliding Window
+	
+	
+	        NO
+	         │
+	         ▼
+	
+	What am I optimizing?
+	
+	────────────────────────────────────
+	
+	Maximum / Minimum SUM
+	of a contiguous subarray?
+	
+	        YES
+	         │
+	         ▼
+	      Kadane
+	
+	Ask:
+	
+	"Does my previous running sum help future numbers,
+	or is it hurting them?"
+	
+	If currentSum < 0
+	
+	↓
+	
+	Throw away EVERYTHING.
+	
+	────────────────────────────────────
+	
+	Exact target sum?
+	Count subarrays?
+	Need historical sums?
+	
+	        YES
+	         │
+	         ▼
+	 Prefix Sum + HashMap
+	
+	Ask:
+	
+	"Have I seen a previous prefix sum that would make
+	this subarray equal k?"
+	  
+___________________________________________________________________		  
+	
+	
+
+/*
+	 * SAFE LOCAL DECISION TEST
+	 *
+	 * Sliding Window:
+	 *     I know when to move LEFT.
+	 *
+	 * Kadane:
+	 *     I know when to restart.
+	 *
+	 * Prefix Sum:
+	 *     I know neither.
+	 *
+	 * If I can't prove a local decision is safe,
+	 * I probably need historical information.
+ */
+
+	
 		 
 - Math
 	Get last digit -- x % 10 
@@ -202,7 +347,17 @@ Search
 		  best for large, sorted data 
 		  iterative preferred in practice
 		  
-		  
+
+
+Kadane's vs Sliding Window	
+- Before writing ANY code, ask:
+	
+- "What would make me move the LEFT pointer?"
+	
+- If you know → Sliding Window.
+	
+- If you DON'T know, but it's asking for the maximum/minimum SUM
+	of a contiguous subarray → Kadane.	  
 		  
 		  
 Sorting
