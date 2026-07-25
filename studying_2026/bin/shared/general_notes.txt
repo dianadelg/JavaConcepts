@@ -336,6 +336,19 @@ ___________________________________________________________________
  *
  *     "Are the numbers themselves getting bigger?"
  *
+ * If a loop runs n times and the operation inside
+ * costs O(log n):
+ *
+ *     O(n) × O(log n)
+ *     =
+ *     O(n log n)
+ *
+ * Do not add them:
+ *
+ *     O(n) + O(log n)   // incorrect here
+ *
+ * Add complexities when operations happen one after another.
+ * Multiply when an operation occurs inside a loop.
  */
 		 
 
