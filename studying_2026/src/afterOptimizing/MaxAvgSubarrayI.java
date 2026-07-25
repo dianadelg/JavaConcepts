@@ -22,6 +22,8 @@ public class MaxAvgSubarrayI {
 			-104 <= nums[i] <= 104
 	 */
 	
+	//sliding window
+	
 	public static double findMaxAverage(int[] nums, int k) {
 	    int l = 0;
 	    double currentSum = 0;
