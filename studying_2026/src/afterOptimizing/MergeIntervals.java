@@ -65,9 +65,19 @@ public class MergeIntervals {
 	}
 	return result.toArray(new int[result.size()][]);
 	}
-	
+
 	//Time O(n log n) since you have to sort array
 	//Space O(n) due to result array, at max none of the intervals overlap so will hold all n intervals
+
+	public static void main (String[] args) {
+	    int[][] intervals = {{1,2}, {2, 5}, {3, 6}, {1, 3}, {10, 18}};
+	    intervals = merge(intervals);
+	    
+	    for(int[] interval : intervals) {
+	        System.out.print(Arrays.toString(interval) + " ");
+	    }
+	}
+
 }
 
 //NOTE: LeetCode considers touching intervals to overlap. So [1, 5] [5, 8] --> [1, 8]
