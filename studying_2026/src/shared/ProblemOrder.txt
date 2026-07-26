@@ -14,3 +14,5 @@
 14. Maximum Average Subarray I -- EASY, fixed sliding window, not using a set
 15. Maximum Subarray - MEDIUM, Kadane's algo
 16. Subarray Sum Equals K -- MEDIUM, prefix sum
+17. RemoveDuplicates -- my own, used for interviews
+18. MergeIntervals -- MEDIUM, intervals
