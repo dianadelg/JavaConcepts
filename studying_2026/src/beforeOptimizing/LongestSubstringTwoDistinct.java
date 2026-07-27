@@ -73,8 +73,8 @@ public class LongestSubstringTwoDistinct {
 		}
 		return maxLength;
 		
-		//runtime: O(n)
-		//Space: O(n)
+		//O(n) runtime
+		//O(1) space -- count is bound by alphabet size (26)
 	}
 	
 	public static void main(String[] args) {
