@@ -16,3 +16,4 @@
 16. Subarray Sum Equals K -- MEDIUM, prefix sum
 17. RemoveDuplicates -- my own, used for interviews
 18. MergeIntervals -- MEDIUM, intervals
+19. BinaryTreeLevelOrder -- MEDIUM, BST traversals

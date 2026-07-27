@@ -603,8 +603,19 @@ Stores words character-by-character for efficient prefix lookup.
 
 
 
-
-
+BFS -- breadth first: 1, 2, 4, 5
+          1
+		 / \
+		2   4
+	   /
+	  5 
+		
+DFS -- depth first: 1, 2, 5, 4
+          1
+		 / \
+		2   4
+	   /
+	  5 
 
 		 
 Mental Decision Tree
