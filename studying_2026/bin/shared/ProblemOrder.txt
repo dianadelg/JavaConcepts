@@ -17,3 +17,4 @@
 17. RemoveDuplicates -- my own, used for interviews
 18. MergeIntervals -- MEDIUM, intervals
 19. BinaryTreeLevelOrder -- MEDIUM, BST traversals
+20. RemoveDuplicatesSortedArray -- EASY, two pointers
