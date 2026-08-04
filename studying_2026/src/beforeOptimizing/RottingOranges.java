@@ -81,7 +81,7 @@ public class RottingOranges {
             //and +1 -1 vertically
             
             	//neighbor exists to the right, check as visited, if not, add to visited and queue
-            if(node[0]+1>0 && node[0]+1<grid.length) { //row
+            if(node[0]+1>=0 && node[0]+1<grid.length) { //row
             	//means valid neighbor
             	//check if 1 or 2 and add to queue and rot count
             	int[] neighbor = {node[0]+1, node[1]};
@@ -93,7 +93,7 @@ public class RottingOranges {
               }
             }
             
-            if(node[0]-1>0 && node[0]-1<grid.length) {
+            if(node[0]-1>=0 && node[0]-1<grid.length) {
             	//valid node
             	//means valid neighbor
             	//check if 1 or 2 and add to queue and rot count
@@ -106,7 +106,7 @@ public class RottingOranges {
               }
             }
             
-            if(node[1]+1>0 && node[1]+1<grid[0].length) { //col
+            if(node[1]+1>=0 && node[1]+1<grid[0].length) { //col
             	//means valid node
             	//means valid neighbor
             	//check if 1 or 2 and add to queue and rot count
@@ -119,7 +119,7 @@ public class RottingOranges {
               }
             }
             
-            if(node[1]-1>0 && node[1]-1<grid[0].length) { //col
+            if(node[1]-1>=0 && node[1]-1<grid[0].length) { //col
             	//means valid node
             	//means valid neighbor
             	//check if 1 or 2 and add to queue and rot count
