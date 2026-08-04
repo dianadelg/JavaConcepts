@@ -1,0 +1,21 @@
+90% of the time — just use Java's built-in:
+
+java
+Arrays.sort(arr);         // for primitive arrays
+Collections.sort(list);   // for ArrayLists
+
+These use Timsort under the hood (merge sort + insertion sort hybrid), are always O(n log n), and save you from writing any sorting code at all. In an interview, unless they specifically ask you to implement a sort, just use these.
+
+If they ask you to implement one yourself:
+
+Situation	
+Just need it to work, any input	Merge Sort — consistent O(n log n), straightforward to implement
+Memory is tight	Heap Sort — O(n log n) with O(1) space
+Data is small or nearly sorted	Insertion Sort — simple and fast for small n
+Never use in interviews	Bubble Sort — no practical advantage over the others
+
+The honest answer though — in a HackerRank OA the goal is usually to solve the problem, not to show off your sorting. So:
+
+Use Arrays.sort() to handle sorting in one line
+Spend your brainpower on the actual logic of the problem
+Only implement a sort manually if the problem explicitly asks for it
