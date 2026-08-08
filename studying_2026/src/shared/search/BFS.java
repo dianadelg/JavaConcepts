@@ -9,6 +9,17 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
 
+/*
+ * BFS Algo in plain English:
+ * Setup: Create an empty queue and a vi
+ * sited list to keep track of nodes.
+ * Start: Choose a starting node, mark it as visited, and put it into the queue.
+ * Repeat: While the queue is not empty, take the first node out of the queue.
+ * Explore: Look at all neighbor nodes of this current node. If a neighbor has not been 
+ * 			visited yet, mark it as visited and put it into the back of the queue.
+ * Finish: Stop when the queue is completely empty.
+ */
+
 public class BFS {
 	public static void bfs(int start, Map<Integer, List<Integer>> graph) {
         Queue<Integer> queue = new LinkedList<>();
