@@ -96,6 +96,61 @@ public class Encapsulation {
 	}
 	
 	/*
+	 * MENTAL MODEL: THE VENDING MACHINE
+	 *
+	 * Think of a public method like the button on a vending machine.
+	 * You press the button, a snack comes out. That button is the only
+	 * thing you're allowed to interact with from the outside.
+	 *
+	 * Inside the machine, the snacks could be on a spinning rack, a
+	 * conveyor belt, robot arms — you have no idea, and you don't care.
+	 * The company could completely redesign the inside, and as long as
+	 * pressing the same button still gives you the same snack, you'd
+	 * never notice anything changed.
+	 *
+	 * Same idea here: the PUBLIC METHOD (button) keeps the same name and
+	 * return type. The PRIVATE FIELD (inside mechanism) can change freely
+	 * behind it.
+	 *
+	 *
+	 * HOW THIS WORKS MECHANICALLY (using getBalance() as the example):
+	 *
+	 *   private int balanceInCents;
+	 *
+	 *   double getBalance() {
+	 *       return balanceInCents / 100.0;
+	 *   }
+	 *
+	 * Say balanceInCents = 5000. Step by step when getBalance() runs:
+	 *   1. Java reads the field: balanceInCents is 5000 (an int).
+	 *   2. It runs the math: 5000 / 100.0 = 50.0 (a double, because
+	 *      100.0 forces the division to happen in double).
+	 *   3. That 50.0 is a brand new value, built fresh on this line —
+	 *      it's not the field itself being sent out.
+	 *   4. return sends that 50.0 back out, matching the method's
+	 *      promised return type of double.
+	 *
+	 * The field never leaves the method. The method peeks at the private
+	 * field, does some conversion/math on it, and only ships out the
+	 * final result. The caller never sees balanceInCents directly — only
+	 * whatever the return line produces.
+	 *
+	 *
+	 * WIDENING vs NARROWING (why no cast was needed above):
+	 *
+	 * int -> double is a WIDENING conversion (small type -> bigger type
+	 * that can hold everything the small one could, plus more). Java does
+	 * this automatically, no cast required. That's why
+	 * "return balanceInCents;" alone would even compile in a method that
+	 * returns double — Java auto-converts the int to a double for you.
+	 *
+	 * Going the other direction (double -> int) is NARROWING, and risks
+	 * losing data (the decimal part), so Java forces you to write an
+	 * explicit cast, e.g.:
+	 *     int amountInCents = (int) Math.round(amount * 100);
+	 */
+	
+	/*
 	 * WHY PRIVATE FIELDS LET YOU CHANGE INTERNALS SAFELY:
 	 *
 	 * Say later you switch `balance` from a double to storing cents as an
