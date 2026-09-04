@@ -29,11 +29,11 @@ public class ValidPalindrome {
     	//remove punctuation
     	s = s.replaceAll("\\p{Punct}", ""); //O(n) runtime, O(1) space
     	
-    	for(int i=0; i<s.length()/2; i++){
-    		if(s.charAt(i)!=s.charAt(s.length()-i-1)) {
+    	for(int i=0; i<s.length()/2; i++){ //O(n)/2 -- O(n)
+    		if(s.charAt(i)!=s.charAt(s.length()-i-1)) { //O(1)
     			return false;
     		}
-    	}
+    	} //loop is O(n) * O(1) = O(n)
     	return true;
     	
     	//then two pointers like palindrome number 
@@ -46,7 +46,7 @@ public class ValidPalindrome {
 	}
 	
 	/*
-	 * TO DO: edge cases, need to thoroughly test edge cases
+	 * TO DO: edge cases, need to thoroughly test edge cases, check runtimes/space complexity
 	 */
 
 }
