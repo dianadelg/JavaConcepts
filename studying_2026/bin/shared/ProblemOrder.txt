@@ -19,3 +19,4 @@
 19. BinaryTreeLevelOrder -- MEDIUM, BST traversals
 20. RemoveDuplicatesSortedArray -- EASY, two pointers
 21. Rotting Oranges -- MEDIUM, grid, multisource BFS
+22. Valid Palindrome -- EASY, strings
