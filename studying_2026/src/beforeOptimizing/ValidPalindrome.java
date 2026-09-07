@@ -23,6 +23,8 @@ public class ValidPalindrome {
     		return true;
     	}
     	
+    	//issue -- all of these create new strings multiple times. This is inefficient!!!
+    	
     	//could I chain all of these replace, lowercase, replaceAll together to clean it up?
     
     	
