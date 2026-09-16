@@ -8,8 +8,8 @@ What interview wording should make me think of this pattern?
 
 
 - Length & Size Method Runtimes:
- - String.length() -> O(1)
- - Array.length    -> O(1)
+ - String.length()  -> O(1)
+ - Array.length     -> O(1)
  - ArrayList.size() -> O(1)
 Why? 
  Java stores the length/size as a cached property or metadata field. 

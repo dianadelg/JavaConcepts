@@ -1,3 +1,4 @@
-/shared/
-/beforeOptimizing/
 /afterOptimizing/
+/beforeOptimizing/
+/module-info.class
+/shared/
