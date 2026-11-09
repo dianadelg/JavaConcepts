@@ -1,7 +1,9 @@
 package shared.dataStructures;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 
 public class Graphs {
 	
@@ -156,12 +158,9 @@ public class Graphs {
         graph.get(island2).add(island1);
     }
 
-    // Depth-First Search
-    public static void dfs(
-        int island,
-        List<List<Integer>> graph,
-        boolean[] visited
-    ) {
+    // Depth-First Search - Explore one path as deeply as possible before backtracking
+    // DFS typically uses recursion (the call stack)
+    public static void dfs(int island, List<List<Integer>> graph, boolean[] visited){
 
         // Mark the current island as visited
         visited[island] = true;
@@ -170,15 +169,82 @@ public class Graphs {
         System.out.println("Visiting island: " + island);
 
         // Loop through the current island's neighbors
+//        Let's translate this line by line:
+//
+//        Line 1: Look at every neighbor of our current island.
+//
+//        Line 2: Check whether we've already explored that neighbor.
+//
+//        Line 3: If not, explore that neighbor using the same map and checklist.
         for (int neighbor : graph.get(island)) {
         	//for each neighbor in the current island's list of neighbors, execute
+        	//graph.get(island) — Retrieves the list of neighbors for our current island
+        	//so for each neighbor in the current island's list of neighbors
+        	
         	//the code inside the loop
         	
             // Only explore unvisited neighbors
+        	// AND explore immediately
             if (!visited[neighbor]) {
                 dfs(neighbor, graph, visited); //--> RECURSION!
+                //note we use neighbor instead of island (the current one we're on)
+                //Explore this new neighbor island, but keep using the same map and checklist
+                //REMEMBER:
+//                neighbor → Where am I going next?
+//         		  graph → What connections exist?
+//           	  visited → Where have I already been?
             }
         }
+    }
+    
+    // BFS - Explore all immediate neighbors first, then their neighbors, moving outward one level at a time.
+    // BFS typically uses a queue - FIFO
+    // Can write queue like: Queue<Integer> queue = new ArrayDeque<>();
+    public static void bfs(int island, List<List<Integer>> graph, boolean[] visited) {
+    // We'll use the same graph and visited array from our DFS exercise
+    	//with BFS, we generally mark an island as visited when we add it to the queue, rather than when we remove it. 
+    	//This prevents the same island from being added multiple times
+    
+    	//1. Create queue
+    	Queue<Integer> queue = new ArrayDeque<>();
+    	
+    	//2. Mark starting island as visited
+    	visited[island] = true;
+    	
+    	//3. Add that island to queue
+    	queue.add(island);
+    	
+    	//4. Keep exploring while the queue isn't empty
+    	//So this is where DFS would use recursion, here we 
+    	//use a loop that continues as long as there are islands waiting in our queue
+    
+    	while(!queue.isEmpty()) {
+            // 5. Get (remove) the next island from the queue and save it
+    		int currentIsland = queue.poll();
+    	    //removes and returns the element at the front of the queue
+//    		Notice something important: we now have two island variables
+//    		- island — The original starting island passed into bfs()
+//    		- currentIsland — The island we're currently processing from the queue
+
+            // 6. Explore its neighbors
+    		for(int neighbor: graph.get(currentIsland)) {
+                //Check whether neighbor is unvisited
+    			
+
+    			if(!visited[neighbor]) {
+    				//if not visited, mark as visited and then add it to our queue
+    				//so we can EXLPORE LATER
+    				visited[neighbor]=true;
+    	    		// 7. Add unvisited neighbors to the queue
+    				queue.add(neighbor);
+    			}
+    			
+    		}
+    	}
+    	
+    	//One additional consideration: recursive DFS can cause a stack overflow 
+    	//on extremely deep graphs, so iterative DFS or BFS may be safer when the 
+    	//graph is very large.
     }
 	
 
