@@ -10,6 +10,8 @@ import java.util.*;
 //5. RETURN the saved index and current index if found.
 //6. STORE the current number and index if not found.
 
+//TL;DR: store current number, search for complement
+
 public class TwoSum {
 	//optimized solution -- Hashmaps!
 	

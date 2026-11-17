@@ -3,6 +3,17 @@ package afterOptimizing;
 import java.util.HashSet;
 
 public class ContainsDuplicate {
+	
+//	HashSet — Detecting Duplicates
+//	1. CREATE an empty HashSet.
+//	2. LOOP through the array.
+//	3. CHECK whether the current number is already in the set.
+//	4. RETURN TRUE if it exists.
+//	5. ADD the number if it doesn't exist.
+//	6. RETURN FALSE after the loop finishes.
+
+	
+	//	TL;DR: Check what you've SEEN. Store what you HAVEN'T.
 
     public static boolean hasDuplicate(int[] nums) {
     	HashSet<Integer> set = new HashSet<>();
