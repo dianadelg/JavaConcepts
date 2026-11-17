@@ -2,6 +2,14 @@ package afterOptimizing;
 
 import java.util.*;
 
+//Our optimized Two Sum checklist
+//1. CREATE a HashMap storing number → index.
+//2. LOOP through the array once.
+//3. CALCULATE the complement: target - nums[i].
+//4. CHECK whether the complement already exists in the HashMap.
+//5. RETURN the saved index and current index if found.
+//6. STORE the current number and index if not found.
+
 public class TwoSum {
 	//optimized solution -- Hashmaps!
 	
