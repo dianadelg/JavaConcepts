@@ -1,0 +1,8 @@
+Testing checklist should include:
+- Empty inputs, when permitted by the constraints
+- Single-element inputs
+- Duplicate values
+- No valid solution or unreachable destination
+- Boundary values and off-by-one errors
+- Large inputs that could expose inefficient algorithms
+- Correct return types, method signatures, and input/output handling
