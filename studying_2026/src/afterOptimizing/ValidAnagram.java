@@ -15,6 +15,33 @@ import java.util.*;
 		
 		//PATTERN: using an array as a frequency counter
 		
+//		Plain-English Algorithm (Optimized):
+//			1. Check lengths: If the two strings have different lengths, return false immediately.
+//			2. Create a frequency array: Initialize an integer array of size 26 (one index for each lowercase English letter).
+//			3. Loop through both strings simultaneously:
+//			   - Increment the frequency of the current character in s.
+//			   - Decrement the frequency of the current character in t.
+//			   - Use charAt(i) - 'a' to map each character to an array index (0–25).
+//			4. Check the frequencies: Loop through the frequency array. If any count is not zero, return false.
+//			5. Return true: If every frequency is zero, both strings contain exactly the same characters with the same counts.
+		
+		//TL;DR: Valid Anagram: Same length → Count up for S → Count down for T → All zeros = anagram.
+		
+		//I WANT TO NOTE. What if it was capital letters, unicode chars, etc?
+		//this would break, because 'A' - 'a' would give a negative index
+		//IN THIS CASE, instead of a frequency array, we'd use a hashmap and store the counts the same way
+		//and we'd loop like this:
+		
+//		for (int count : map.values()) {
+//		    if (count != 0) {
+//		        return false;
+//		    }
+//		}
+//
+//		return true;
+		
+		//TL;DR p2: Fixed alphabet → Frequency array. Flexible alphabet → HashMap.
+		
 		public static boolean isAnagram(String s, String t) {
 		    if (s.length() != t.length()) {
 		        return false;
