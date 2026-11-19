@@ -15,6 +15,19 @@ public class GroupAnagrams {
 //			There is no string in strs that can be rearranged to form "bat".
 //			The strings "nat" and "tan" are anagrams as they can be rearranged to form each other.
 //			The strings "ate", "eat", and "tea" are anagrams as they can be rearranged to form each other.
+	
+	
+//	Plain-English algorithm
+//	1. Create a HashMap where the key is a sorted word and the value is a list of original words.
+//	2. Loop through every word in the input array.
+//	3. Sort the current word's characters alphabetically to create its shared anagram key.
+//	4. Check the HashMap:
+//	   - If the key exists, add the original word to its existing list.
+//	   - If the key doesn't exist, create a new list containing the original word.
+//	5. Return all the HashMap values, because those are the grouped lists.
+	
+	
+	//TL;DR: Group Anagrams: Sort word → Use sorted word as key → Add original word to group → Return values.
 	        
 	    public static String sortsKey(String word) {
 	        // 1. Convert string to char array
