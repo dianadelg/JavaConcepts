@@ -5,6 +5,12 @@ public class ValidPalindrome {
 //	A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.
 //
 //	Given a string s, return true if it is a palindrome, or false otherwise.
+//	
+//	Initialize left = 0 and right = s.length() - 1.
+//	While left < right, skip non-alphanumeric characters on either side.
+//	Compare the remaining characters, ignoring case.
+//	Return false on a mismatch; otherwise, move both pointers inward.
+//	Return true after the loop.
 	
 	
 	public static boolean isPalindrome(String s) {
@@ -16,15 +22,19 @@ public class ValidPalindrome {
 	    //still the two pointer approach, but less passes to clean the string -- we just skip weird char
 	    // Instead of creating cleaned copies, we skip non-alphanumeric chars in place.
 	    
+	    //While my pointers haven't met AND my left character is NOT a letter or digit, keep moving left forward.
+	    
 	    while (left < right) {
 
 	        while (left < right && !Character.isLetterOrDigit(s.charAt(left))) {
 	            left++;
 	        } //increase left index when not a number/letter
+	          // If LEFT sees punctuation, move LEFT forward
 
 	        while (left < right && !Character.isLetterOrDigit(s.charAt(right))) {
 	            right--;
 	        } //decrease right index when not a number/letter
+	          // If RIGHT sees punctuation, move RIGHT backwards
 
 	        if (Character.toLowerCase(s.charAt(left)) != Character.toLowerCase(s.charAt(right))) {
 	            //if chars lowercase are !=, return false
