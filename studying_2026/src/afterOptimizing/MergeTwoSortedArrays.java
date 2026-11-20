@@ -67,6 +67,9 @@ public class MergeTwoSortedArrays {
     	
     }
     
+    //Runtime: O(n+m)
+    //Space: O(1)
+    
     
     public static void main(String[] args) {
     	int[] nums1 = {1, 2, 4, 7, 0, 0, 0, 0};
