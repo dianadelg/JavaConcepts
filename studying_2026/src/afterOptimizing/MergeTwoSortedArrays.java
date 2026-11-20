@@ -64,6 +64,10 @@ public class MergeTwoSortedArrays {
     	    p--;
     	    p2--;
     	}
+//    	//why check nums2 pointer?
+//    	This is not a special rule about nums2 always being more important.
+//    	It's because nums1 is the destination array.
+//    	If the problem asked us to merge everything into nums2 instead, we'd reverse the logic.
     	
     }
     
