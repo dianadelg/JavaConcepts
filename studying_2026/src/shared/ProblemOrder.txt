@@ -21,3 +21,4 @@
 21. Rotting Oranges -- MEDIUM, grid, multisource BFS
 22. Valid Palindrome -- EASY, strings
 23. Find if Path Exists in Graph -- EASY, graphs
+24. Merge Two Sorted Arrays -- EASY, arrays, merging backwards

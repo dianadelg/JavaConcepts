@@ -632,3 +632,27 @@ Mental Decision Tree
 	Need min/max repeatedly?👉 PriorityQueue
 	
 	Need hierarchy?👉 Tree
+	________________________________________________________________________
+	Problem clue	     			Pattern to consider
+	________________________________________________________________________
+	Two sorted arrays    			Two pointers to merge or compare
+	
+	One sorted array, remove duplicates	Slow/fast pointers
+	
+	Sorted array, find a pair with a 
+	target sum 				Left/right pointers
+	
+	Sorted array, find a target value	Binary search
+
+	
+	
+	
+	How to sort a string:
+	// Step 1: Convert String to char[]
+	char[] chars = word.toCharArray();
+	
+	// Step 2: Sort the array
+	Arrays.sort(chars);
+	
+	// Step 3: Convert char[] back to String
+	String sorted = new String(chars);
