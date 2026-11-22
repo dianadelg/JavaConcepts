@@ -1,0 +1,6 @@
+Before doing any problem, ask yourself:
+1. What is the input? Array, string, graph, tree, linked list?
+2. What is the question asking? Existence, shortest path, count, maximum, minimum?
+3. Are there special clues? Sorted input, contiguous elements, connected nodes, repeated subproblems?
+4. Which algorithms could solve it? Sometimes there are multiple correct answers.
+5. Why would I choose one over another? Complexity, implementation simplicity, memory, or constraints?

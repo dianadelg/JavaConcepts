@@ -42,21 +42,46 @@ public class FindIfPathExistsGraph {
 	public static boolean validPath(int n, int[][] edges, int source, int destination) {
 
 		// Create adjacency list
+		//Think of this as: main index graph.get(x) --> get a node
+		//And then the list that you get returned --> [1, 2, ...] are the neighbors of that node
 		List<List<Integer>> graph = new ArrayList<>();
 
 		// Initialize an empty neighbor list for each vertex
+		//We start with []. We need to add the inner lists for the connections to each node
 		for (int i = 0; i < n; i++) {
 			graph.add(new ArrayList<>());
+			//We do this O(V) times --> put n empty lists in it (Same as saying O(n) times in this case
 		}
 
 		// Add bidirectional connections
-		for (int[] edge : edges) {
-			graph.get(edge[0]).add(edge[1]);
+		// if we see [0,1]
+		// Since this is bidirectional, we need to do [0->1] and [1->0]
+		// If it wasn't, we'd just do [0->1]
+		for (int[] edge : edges) { //iterating through the list of lists [[1,2],[3,4],[1,4]]
+			//so for each inner list, get the index 0 node and index 1 node and vice versa
+			//these are NOT values. They are positions in the inner list
+			graph.get(edge[0]).add(edge[1]); 
 			graph.get(edge[1]).add(edge[0]);
+			
+			//we iterate through O(E) edges
+			
+			//So. Building the adjacency list: O(V) + O(E) --> O(V+E)
+//			Writing O(V + E) tells the interviewer:
+//
+//			"My algorithm performs work proportional to the number "
+//			+ "of vertices AND the number of edges."
+//
+//		    Writing O(max(V, E)) is also mathematically valid, but 
+//		    it hides that useful distinction
 		}
 
 		// Track visited vertices
 		boolean[] visited = new boolean[n];
+		//java automatically defaults everything to false
+		//so everything right now is unvisited
+		//and we can use each index as a direct mapping to the node we're checking
+		//NOTE: could use a set if the node number isn't corresponding to the node itself 
+			// ex: two nodes identified as 1093 and 1929. Would waste space
 
 		// Start iterative DFS -- THIS IS THE ONLY CHANGE FROM OUR RECURSIVE METHOD!!
 		return dfsIterative(source, destination, graph, visited);
@@ -72,12 +97,13 @@ public class FindIfPathExistsGraph {
 
 		// 2. Start searching from source
 		stack.push(source);
-		visited[source] = true;
+		visited[source] = true; //visited doesn't necessarily mean we've finished exploring a node. It means we've discovered it
 
-		// 3. Continue while there are vertices to explore
-		while (!stack.isEmpty()) {
+		// 3. Continue while there are nodes to explore.
+		//Stop when there are no more nodes to visit
+		while (!stack.isEmpty()) { //O(V times in worst case)
 
-			// Remove the most recently added vertex
+			// Remove the most recently added node
 			int current = stack.pop();
 
 			// 4. Base case: destination found
@@ -86,7 +112,10 @@ public class FindIfPathExistsGraph {
 			}
 
 			// 5. Explore neighbors
-			for (int neighbor : graph.get(current)) {
+			for (int neighbor : graph.get(current)) {//this is happening for every neighbor
+				//say we had [0,1][1,3] --> this is two Es
+				//but we have 4 relationships: 0 -> 1, 1 -> 0, 1 -> 3, 3 -> 1
+				//So we're visiting O(2E) neighbors or O(E)
 
 				if (!visited[neighbor]) {
 					visited[neighbor] = true;
@@ -96,6 +125,11 @@ public class FindIfPathExistsGraph {
 				}
 			}
 		}
+//		Initialize adjacency list	O(V)
+//		Populate adjacency list	O(2E)
+//		DFS: process vertices	O(V)
+//		DFS: examine neighbors	O(2E)
+		//So the whole time complexity: O(2V+E+2E) --> O(V+3E) --> O(V+E)
 
 		// 6. No path found
 		return false;
@@ -104,6 +138,13 @@ public class FindIfPathExistsGraph {
 		// pushing and popping vertices until we find
 		// the destination or run out of vertices to explore
 	}
+	
+	
+	//space complexity:
+	//graph --> is a list of size n, but then has inner arrays with the arrays summing to 2E edges (E edges but bidirectional so 2*E)
+	//stack --> in worst case, all n nodes/V vetices (same thing)
+	//visited --> in worst case, all n nodes/V vetices (same thing)
+	//So space is O(V+E)
 
 	public static void main(String[] args) {
 		int[][] edges = { { 0, 1 }, { 1, 2 }, { 2, 0 } };
