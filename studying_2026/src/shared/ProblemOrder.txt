@@ -20,5 +20,6 @@
 20. RemoveDuplicatesSortedArray -- EASY, two pointers
 21. Rotting Oranges -- MEDIUM, grid, multisource BFS
 22. Valid Palindrome -- EASY, strings
-23. Find if Path Exists in Graph -- EASY, graphs
+23. Find if Path Exists in Graph -- EASY, graphs, iterative DFS
 24. Merge Two Sorted Arrays -- EASY, arrays, merging backwards
+25. Number of Islands -- MEDIUM, iterative DFS, graphs
