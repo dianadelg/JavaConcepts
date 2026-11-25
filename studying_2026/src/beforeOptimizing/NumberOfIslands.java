@@ -173,7 +173,7 @@ public class NumberOfIslands {
 			    // Check if unvisited
 			    // Push and mark as visited
 				if (nextRow >= 0 &&  nextRow < grid.length && nextCol >= 0 &&
-						nextCol < grid[0].length && grid[nextRow][nextCol] == '1' 
+						nextCol < grid[0].length && grid[nextRow][nextCol] == '1'  //I want to note the order you do this in matters, java evals from L to R. So if we checked visited[][] or == '1' and it was an invalid index -1, this would throw an error!!
 						&& !visited[nextRow][nextCol]){
 					//follow familiar pattern of pushing to stack
 					//and marking as true
